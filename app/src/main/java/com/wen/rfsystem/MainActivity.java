@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity{
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
 
 
-        mylist = dao.getadayreserve(today);
-
+        //mylist = dao.getadayreserve(today);
+        mylist = dao.getAllreserve();
         for (reserve s : mylist)
         {
             disp.add(dao.checkcus(s._id).tel);
@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity{
         Log.d("INTO","onResume");
         super.onResume();
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
-        List<reserve> mylist = dao.getadayreserve(today);
+        //List<reserve> mylist = dao.getadayreserve(today);
+        mylist = dao.getAllreserve();
         disp.clear();
         for (reserve s :mylist)
         {

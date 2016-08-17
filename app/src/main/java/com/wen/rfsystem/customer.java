@@ -16,7 +16,7 @@ public class customer {
                     String awkreason,
                     int VIP,
                     String name,
-                    Date birthday,
+                    String birthday,
                     String address,
                     String tel,
                     String PS )
@@ -39,7 +39,7 @@ public class customer {
     public String awkreason;  //黑名單理由
     public int VIP;           //VIP等級
     public String name;       //姓名 生日 地址 電話 備註
-    public Date birthday;
+    public String birthday;
     public String address;
     public String tel;
     public String PS;

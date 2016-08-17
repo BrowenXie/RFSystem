@@ -27,7 +27,7 @@ import java.util.Locale;
 public class SFsysDAOImp implements SFsysDAO{
 
     SQLiteDatabase db;
-    String pattern2 = "EEE MMM d HH:mm:ss Z yyyy";
+   // String pattern2 = "EEE MMM d HH:mm:ss Z yyyy";
     public SFsysDAOImp(Context context){
 
         MyDBHelp helper = new MyDBHelp(context);
@@ -43,7 +43,7 @@ public class SFsysDAOImp implements SFsysDAO{
         cv.put("tel", person.tel);
         cv.put("awkward", person.awkward);
         cv.put("VIP", person.VIP);
-        cv.put("birthday", person.birthday.toString());   //DATA不能直接傳入?
+        cv.put("birthday", person.birthday);
         cv.put("address", person.address);
         cv.put("PS", person.PS);
 
@@ -83,14 +83,14 @@ public class SFsysDAOImp implements SFsysDAO{
         //Log.d("ERR","3");
 
 
-        Date dt = null;
+       /* Date dt = null;
         try {
             dt = new SimpleDateFormat(pattern2, Locale.ENGLISH).parse(c.getString(6));
         } catch (ParseException e) {
             e.printStackTrace();
             Log.d("ERR","IMP-checkcus-日期轉換錯誤~");
         }
-
+*/
 
 
 
@@ -101,7 +101,7 @@ public class SFsysDAOImp implements SFsysDAO{
                         c.getString(4) ,
                         c.getInt(5) ,
                         c.getString(1) ,
-                        dt ,
+                        c.getString(6) ,
                         c.getString(7) ,
                         c.getString(8),
                         c.getString(9)
@@ -128,7 +128,7 @@ public class SFsysDAOImp implements SFsysDAO{
         cv.put("child", reserve.child);
         cv.put("checkout",out) ;
         cv.put("checkin",in);
-        cv.put("reservetime", reserve.reservetime.toString());   //DATA不能直接傳入?
+        cv.put("reservetime", reserve.reservetime);
         cv.put("PS", reserve.PS);
         cv.put("service", reserve.service);
 
@@ -153,7 +153,7 @@ public class SFsysDAOImp implements SFsysDAO{
                 "'child'" + reserve.child+
                 "'checkout'" + reserve.checkout+
                 "'checkin'" + reserve.checkin+
-                "'reservetime'" + reserve.reservetime.toString()+
+                "'reservetime'" + reserve.reservetime+
                 "'service'" + reserve.service+
                 "'PS'" +reserve.PS +
                 "' Where id='" + reserve._id + "'" );
@@ -168,12 +168,6 @@ Log.d("INTO","checkres~");
         Log.d("checkres","1");
         c.moveToPosition((int) id);
         Date dt = null;
-        try {
-            dt = new SimpleDateFormat(pattern2, Locale.ENGLISH).parse(c.getString(6));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            Log.d("ERR","IMP-checkcus-日期轉換錯誤~");
-        }
 
         Log.d("checkres","2");
 
@@ -182,7 +176,7 @@ Log.d("INTO","checkres~");
 
         reserve r = new reserve(c.getInt(1),c.getInt(2),c.getInt(3),
                                 a,b,
-                                dt,
+                                c.getString(6),
                                 c.getString(7),c.getString(8));
 
         Log.d("checkres OK","2.5");
@@ -257,13 +251,13 @@ Log.d("INTO","checkres~");
             do {
 
                 Date dt = null;
-                try {
+                 /*try {
                     dt = new SimpleDateFormat(pattern2, Locale.ENGLISH).parse(c.getString(6));
                 } catch (ParseException e) {
                     e.printStackTrace();
                     Log.d("ERR","IMP-getAllreserve-日期轉換錯誤~");
                 }
-                /*Date dt = null;
+               Date dt = null;
                 try {
                     Log.d("ERR res.getS(6):",c.getString(6));
                     dt = sdf.parse(c.getString(6));
@@ -277,7 +271,7 @@ Log.d("INTO","checkres~");
 
                 reserve r = new reserve(c.getInt(1),c.getInt(2),c.getInt(3),
                         a,b,
-                        dt,
+                        c.getString(6),
                         c.getString(7),c.getString(8));
                 r._id=c.getInt(0);
                 mylist.add(r);
@@ -294,17 +288,14 @@ Log.d("INTO","checkres~");
         //SQLite reservetime:Mon Aug 22 12:00:00 GMT+00:00 2016
         //String test ="Mon Aug 22 12:00:00 GMT+00:00 2016";  用這個可以 BUT...
         Log.d("date",date);
-        //以下是傳回所有訂位資料的CODE
 
         ArrayList<reserve> mylist = new ArrayList<>();
 
-        // Cursor c = db.rawQuery("Select * from reserve where strftime('%Y%m%d',reservetime) = ?", new String[] {date});
-
-
+          Cursor c = db.rawQuery("Select * from reserve where strftime('%Y%m%d',reservetime) = ?", new String[] {date});
        // Cursor c = db.rawQuery("Select * from reserve where reservetime = ?", new String[] {test});
        // Cursor c = db.rawQuery("Select * from reserve where strftime('%Y/%m/%d',reservetime) = ?", new String[] {date});
        // Cursor c = db.rawQuery("Select * from reserve where reservetime between ? and ?", new String[] {date, xxxx});
-        Cursor c = db.rawQuery("Select * from customer", null);
+        //Cursor c = db.rawQuery("Select * from reservetime", null);
 
         //---------------------------------
 
@@ -325,6 +316,8 @@ Log.d("INTO","checkres~");
         if (c.moveToFirst())
         {Log.d("date","moveToFirst");
             do { Log.d("date","moveToFirst-do");
+            /*
+
                 Date dt = null;
                 try {
                     dt = new SimpleDateFormat(pattern2, Locale.ENGLISH).parse(c.getString(6));
@@ -332,13 +325,15 @@ Log.d("INTO","checkres~");
                     e.printStackTrace();
                     Log.d("ERR","IMP-getAllreserve-日期轉換錯誤~");
                 }
+             */
+
 
                 boolean a=(c.getInt(4) == 1)? true : false;
                 boolean b=(c.getInt(5) == 1)? true : false;
 
                 reserve r = new reserve(c.getInt(1),c.getInt(2),c.getInt(3),
                         a,b,
-                        dt,
+                        c.getString(6),
                         c.getString(7),c.getString(8));
                 r._id=c.getInt(0);
                 mylist.add(r);
@@ -366,13 +361,7 @@ Log.d("INTO","checkres~");
             do {
 
 
-                Date dt = null;
-                try {
-                    dt = new SimpleDateFormat(pattern2, Locale.ENGLISH).parse(c.getString(6));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    Log.d("ERR","IMP-getAllcuserve-日期轉換錯誤~");
-                }
+
 
                 customer person = new customer(
                                             c.getInt(2),
@@ -380,7 +369,7 @@ Log.d("INTO","checkres~");
                                             c.getString(4) ,
                                             c.getInt(5) ,
                                             c.getString(1) ,
-                                            dt ,
+                                            c.getString(6) ,
                                             c.getString(7) ,
                                             c.getString(8),
                                             c.getString(9)

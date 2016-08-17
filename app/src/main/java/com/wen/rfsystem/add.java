@@ -44,7 +44,7 @@ public class add extends AppCompatActivity {
          EditText tel = (EditText) findViewById(R.id.telEDText);
          EditText PS = (EditText) findViewById(R.id.PSEDText);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+       /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date dt = null;
         try {
             dt = sdf.parse("2016/08/17 12:00:00");
@@ -52,7 +52,7 @@ public class add extends AppCompatActivity {
             e.printStackTrace();
             Log.d("ERR","日期轉換錯誤~");
         }
-
+*/
 
 
         SFsysDAO dao = new SFsysDAOImp(add.this);
@@ -61,7 +61,7 @@ public class add extends AppCompatActivity {
                                 "",  //黑名單理由
                                 0,   //VIP
                                 nameed.getText().toString(), //姓名
-                                dt,   //生日
+                                "1985/03/01",   //生日
                                 "",   //地址
                                 tel.getText().toString(),//電話
                                 PS.getText().toString()   //備註
@@ -77,7 +77,7 @@ public class add extends AppCompatActivity {
                                 parseInt( childEDText.getText().toString()),//幾小  parseInt( childEDText.getText().toString()) ,
                                 false,// 已離開
                                 false,// 已進入
-                                dt, //訂位時間
+                                "2016/08/17 12:30", //訂位時間
                                 PS.getText().toString(), //備註
                                 "LO"  //訂位輸入人員
         );
@@ -87,8 +87,8 @@ public class add extends AppCompatActivity {
         Log.d("resid", String.valueOf(resid));
 
     }
-
-    public void setDate(View v){
+/*
+ public void setDate(View v){
 
         GregorianCalendar calendar = new GregorianCalendar();
         DateeditText = (EditText) findViewById(R.id.DateeditText);
@@ -111,6 +111,8 @@ public class add extends AppCompatActivity {
         calendar.get(Calendar.DAY_OF_MONTH));
 
     }
+ */
+
 
     public void cancel(View v){
 

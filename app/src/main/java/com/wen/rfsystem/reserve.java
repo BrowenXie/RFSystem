@@ -10,7 +10,7 @@ public class reserve {
             int child,
             boolean checkout,
             boolean checkin,
-            Date reservetime,
+            String reservetime,
             String PS,
             String service
     ){
@@ -31,7 +31,7 @@ public class reserve {
     public int child;
     public boolean checkout;        //入場.出場
     public boolean checkin;
-    public Date reservetime;        //訂位日期訂位時間
+    public String reservetime;        //訂位日期訂位時間
     public String PS;               //備註
     public String service;          //訂位人員
 

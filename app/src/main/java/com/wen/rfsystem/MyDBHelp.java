@@ -21,7 +21,7 @@ public class MyDBHelp extends SQLiteOpenHelper {
                                             "awkward INTEGER,"+
                                             "awkreason VARCHAR,"+
                                             "VIP INTEGER,"+
-                                            "birthday DATE,"+
+                                            "birthday VARCHAR,"+
                                             "address VARCHAR,"+
                                             "tel VARCHAR,"+
                                             "PS VARCHAR)";
@@ -34,14 +34,14 @@ public class MyDBHelp extends SQLiteOpenHelper {
                                             "child INTEGER, "+
                                             "checkout INTEGER,"+      //BOOL?
                                             "checkin INTEGER, "+
-                                            "reservetime  DATE,"+
+                                            "reservetime  VARCHAR,"+
                                             "PS VARCHAR,"+
                                             "service VARCHAR)";
 
 
     //建構方法
    public MyDBHelp(Context context) {
-        super(context,"myDB", null, 1);
+        super(context,DB_Name, null, 1);
 
     }
 
