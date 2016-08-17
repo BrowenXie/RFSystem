@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity{
     TextView textDate;
     private DatePickerDialog datePickerDialog;
     List<reserve> mylist;
-    String today;
+    String today;String today2;
 
     public MainActivity() {
         super();
@@ -52,6 +52,11 @@ public class MainActivity extends AppCompatActivity{
         today = df.format(mCal.getTime());
         textDate.setText(today);
 
+        String dateformatNOF = "yyyyMMdd";
+        SimpleDateFormat df2 = new SimpleDateFormat(dateformatNOF);
+        today2 = df2.format(mCal.getTime());
+
+
         // 實作DatePickerDialog的onDateSet方法，設定日期後將所設定的日期show在textDate上
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             //將設定的日期顯示出來
@@ -63,14 +68,14 @@ public class MainActivity extends AppCompatActivity{
         },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
          calendar.get(Calendar.DAY_OF_MONTH));
 
-
-
         // listview
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
 
+/*
 
-        //mylist = dao.getadayreserve(today);
-        mylist = dao.getAllreserve();
+ */
+        mylist = dao.getadayreserve(today2);
+       // mylist = dao.getAllreserve();
         for (reserve s : mylist)
         {
             disp.add(dao.checkcus(s._id).tel);
@@ -101,8 +106,8 @@ public class MainActivity extends AppCompatActivity{
         Log.d("INTO","onResume");
         super.onResume();
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
-        //List<reserve> mylist = dao.getadayreserve(today);
-        mylist = dao.getAllreserve();
+       List<reserve> mylist = dao.getadayreserve(today2);
+       //mylist = dao.getAllreserve();
         disp.clear();
         for (reserve s :mylist)
         {
@@ -132,8 +137,10 @@ public class MainActivity extends AppCompatActivity{
     public void setDate(View v) {
         datePickerDialog.show();
     }
+
+
     public void goRes(View v){
-        Intent it = new Intent(MainActivity.this, resDetail.class);
+        Intent it = new Intent(MainActivity.this, reslistActivity.class);
         startActivity(it);
     }
 

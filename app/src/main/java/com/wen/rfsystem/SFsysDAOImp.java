@@ -282,40 +282,44 @@ Log.d("INTO","checkres~");
 
     @Override
     public List getadayreserve(String date) {
-        date="20160822";
+        //date="2016/08/17"
+        Log.d("date=",date);
 
-        //date String dateformat = "yyyy/MM/dd";  EX 2016/08/17
-        //SQLite reservetime:Mon Aug 22 12:00:00 GMT+00:00 2016
-        //String test ="Mon Aug 22 12:00:00 GMT+00:00 2016";  用這個可以 BUT...
-        Log.d("date",date);
+        //date String dateformat = "yyyy/MM/dd HH:MM";  EX 201608171230
+
 
         ArrayList<reserve> mylist = new ArrayList<>();
 
-          Cursor c = db.rawQuery("Select * from reserve where strftime('%Y%m%d',reservetime) = ?", new String[] {date});
-       // Cursor c = db.rawQuery("Select * from reserve where reservetime = ?", new String[] {test});
-       // Cursor c = db.rawQuery("Select * from reserve where strftime('%Y/%m/%d',reservetime) = ?", new String[] {date});
-       // Cursor c = db.rawQuery("Select * from reserve where reservetime between ? and ?", new String[] {date, xxxx});
-        //Cursor c = db.rawQuery("Select * from reservetime", null);
+        //Cursor c = db.rawQuery("Select * from reserve where reservetime = ?", new String[] {date});
+        // Cursor c = db.rawQuery("Select * from reserve where strftime('%Y%m%d',reservetime) = ?", new String[] {date});
+        // Cursor c = db.rawQuery("Select * from reserve where reservetime = ?", new String[] {test});
+        // Cursor c = db.rawQuery("Select * from reserve where strftime('%Y/%m/%d',reservetime) = ?", new String[] {date});
+        // Cursor c = db.rawQuery("Select * from reserve where reservetime between ? and ?", new String[] {date+" 00:00",});
+        Cursor c = db.rawQuery("Select * from reserve where substr(reservetime,0,9) = ?", new String[] {date});
 
-        //---------------------------------
 
-        Cursor c2 = db.rawQuery("Select strftime('%Y%m%d',reservetime), * from reserve ", null);
+/*
+ //-----------------測試用工具----------------
+     Cursor c2 = db.rawQuery("Select * from reserve where substr(reservetime,0,9) = ?", new String[] {date});
         if (c2.moveToFirst())
         {
             do {
-                Log.d("date",c2.getString(0));
-
+                Log.d("date_c2",c2.getString(0));
             } while (c2.moveToNext());
         }
 
         //---------------------------------
+
+ */
+
+
 
 
         Log.d("moveToFirst:", String.valueOf(c.moveToFirst()));
 
         if (c.moveToFirst())
         {Log.d("date","moveToFirst");
-            do { Log.d("date","moveToFirst-do");
+            do {
             /*
 
                 Date dt = null;

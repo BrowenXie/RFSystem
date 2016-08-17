@@ -61,7 +61,7 @@ public class add extends AppCompatActivity {
                                 "",  //黑名單理由
                                 0,   //VIP
                                 nameed.getText().toString(), //姓名
-                                "1985/03/01",   //生日
+                                "19850301",   //生日
                                 "",   //地址
                                 tel.getText().toString(),//電話
                                 PS.getText().toString()   //備註
@@ -77,7 +77,7 @@ public class add extends AppCompatActivity {
                                 parseInt( childEDText.getText().toString()),//幾小  parseInt( childEDText.getText().toString()) ,
                                 false,// 已離開
                                 false,// 已進入
-                                "2016/08/17 12:30", //訂位時間
+                                "201608171230", //訂位時間
                                 PS.getText().toString(), //備註
                                 "LO"  //訂位輸入人員
         );

@@ -17,27 +17,29 @@ public class reslistActivity extends AppCompatActivity {
     ArrayAdapter<String> resadapter;
     List<reserve> reslist;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reslist);
 
 
         // listview
         SFsysDAO dao = new SFsysDAOImp(reslistActivity.this);
-        reslist = dao.getAllcuserve();
+
+        reslist = dao.getAllreserve();
         for (reserve s : reslist)
         {
-            resdisp.add(dao.checkcus(s._id).name);
+            resdisp.add(dao.checkcus(s.customer).name);
         }
 
         resadapter = new ArrayAdapter<String>( reslistActivity.this,
                 android.R.layout.simple_list_item_1,
                 resdisp);
 
-        reslv = (ListView) findViewById(R.id.listView3);
+        reslv = (ListView) findViewById(R.id.listView2);
         reslv.setAdapter(resadapter);
 
-        reslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                reslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -47,6 +49,8 @@ public class reslistActivity extends AppCompatActivity {
             }
 
         });
+
+
 
 
 
