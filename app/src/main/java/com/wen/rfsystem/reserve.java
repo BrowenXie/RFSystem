@@ -25,18 +25,15 @@ public class reserve {
         this.service=service;
     }
 
-
-
-
-    public long _id;   //訂位編號
-    public long customer;  //顧客資料   int customerID
-    public int adult;   //幾大幾小
+    public long _id;                //訂位編號
+    public long customer;           //顧客資料   int customerID
+    public int adult;               //幾大幾小
     public int child;
-    public boolean checkout;   //入場.出場
+    public boolean checkout;        //入場.出場
     public boolean checkin;
-    public  Date reservetime;  //訂位日期訂位時間
-    public String PS;         //備註
-    public String service;    //訂位人員
+    public Date reservetime;        //訂位日期訂位時間
+    public String PS;               //備註
+    public String service;          //訂位人員
 
 
 }

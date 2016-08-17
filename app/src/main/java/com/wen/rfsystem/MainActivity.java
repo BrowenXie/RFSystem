@@ -43,11 +43,16 @@ public class MainActivity extends AppCompatActivity{
         GregorianCalendar calendar = new GregorianCalendar();
          textDate = (TextView) findViewById(R.id.datetext);
 
+
+        //今天日期
         Calendar mCal = Calendar.getInstance();
         String dateformat = "yyyy/MM/dd";
         SimpleDateFormat df = new SimpleDateFormat(dateformat);
         String today = df.format(mCal.getTime());
         textDate.setText(today);
+
+
+
         // 實作DatePickerDialog的onDateSet方法，設定日期後將所設定的日期show在textDate上
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             //將設定的日期顯示出來

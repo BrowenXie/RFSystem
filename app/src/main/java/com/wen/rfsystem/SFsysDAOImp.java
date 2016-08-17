@@ -5,7 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -188,13 +196,56 @@ Log.d("INTO","checkres~");
 
 
     @Override   //備分用  晚點再寫
-    public void jasonsave() {
+    public void jasonsave(Context context) {
+        List<reserve>  r= getAllreserve();
+        List<customer> c= getAllcuserve();
+        String strc = null,strr = null;
+
+
+        Gson gson = new Gson();
+        strc = gson.toJson(c, new TypeToken<ArrayList<customer>>() {}.getType());
+
+
+
+        //開檔案     目前程式碼作用為讀出...= =
+        //this.context = context;
+       /*
+        String fName = "customer.json";
+         File readFile = new File(context.getFilesDir() + File.separator + fName);
+        char[] buffer = new char[1];
+        FileReader fr = null;
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            fr = new FileReader(readFile);
+            while (fr.read(buffer)!= -1) {
+                sb.append(new String(buffer));
+            }
+            fr.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+         */
+
+
+        Toast.makeText(context, "備份至檔案", Toast.LENGTH_SHORT).show();
+
+
+
 
     }
 
     @Override
-    public void jasonload() {
+    public void jasonload(Context context) {
+        Gson gson = new Gson();
+        String strc = null,strr = null;
+        ArrayList<customer> mylistc = gson.fromJson(strc, new TypeToken<ArrayList<customer>>() {}.getType());
+        ArrayList<customer> mylistr = gson.fromJson(strr, new TypeToken<ArrayList<reserve>>() {}.getType());
 
+        Toast.makeText(context, "備份還原", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.wen.rfsystem;
 
+import android.content.Context;
+
 import java.util.List;
 
 /**
@@ -19,8 +21,8 @@ public interface SFsysDAO {
     public void resupdata(reserve reserve);
     public reserve  checkres(long id);  //傳回指定編號的顧客資料
 
-    public void jasonsave();              //讀寫JSON (用匯出/儲存/備分)
-    public void jasonload();
+    public void jasonsave(Context context);              //讀寫JSON (用匯出/儲存/備分)
+    public void jasonload(Context context);
 
 
 

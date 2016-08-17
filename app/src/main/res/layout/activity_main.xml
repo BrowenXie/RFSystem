@@ -73,19 +73,19 @@
                 android:id="@+id/datetext"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.01" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="設定日期"
             android:id="@+id/button"
             android:layout_alignTop="@+id/datetext"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:onClick="setDate"
-            android:layout_gravity="right" />
+            android:onClick="setDate" />
     </LinearLayout>
 
     <ListView
