@@ -47,7 +47,7 @@ public class add extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date dt = null;
         try {
-            dt = sdf.parse("2016/08/22 12:00:00");
+            dt = sdf.parse("2016/08/17 12:00:00");
         } catch (ParseException e) {
             e.printStackTrace();
             Log.d("ERR","日期轉換錯誤~");

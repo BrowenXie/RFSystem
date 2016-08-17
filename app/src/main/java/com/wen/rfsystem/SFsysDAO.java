@@ -2,6 +2,7 @@ package com.wen.rfsystem;
 
 import android.content.Context;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -16,6 +17,8 @@ public interface SFsysDAO {
     public void cusupdata(customer person);
     public customer  checkcus(long id);  //傳回指定編號的顧客資料
 
+
+
     public long resadd(reserve reserve);  //訂位資料SQLite新增 刪除 修改
     public void resdel(reserve reserve);
     public void resupdata(reserve reserve);
@@ -28,6 +31,8 @@ public interface SFsysDAO {
 
 
     public List getAllreserve();   //傳回所有訂位資料
+    public List getadayreserve(String date);
+
     public List getAllcuserve();   //傳回所有顧客資料
 
 

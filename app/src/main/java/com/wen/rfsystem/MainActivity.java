@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity{
     TextView textDate;
     private DatePickerDialog datePickerDialog;
     List<reserve> mylist;
+    String today;
 
     public MainActivity() {
         super();
@@ -43,15 +45,12 @@ public class MainActivity extends AppCompatActivity{
         GregorianCalendar calendar = new GregorianCalendar();
          textDate = (TextView) findViewById(R.id.datetext);
 
-
         //今天日期
         Calendar mCal = Calendar.getInstance();
         String dateformat = "yyyy/MM/dd";
         SimpleDateFormat df = new SimpleDateFormat(dateformat);
-        String today = df.format(mCal.getTime());
+        today = df.format(mCal.getTime());
         textDate.setText(today);
-
-
 
         // 實作DatePickerDialog的onDateSet方法，設定日期後將所設定的日期show在textDate上
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -68,12 +67,14 @@ public class MainActivity extends AppCompatActivity{
 
         // listview
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
-        mylist = dao.getAllreserve();
+
+
+        mylist = dao.getadayreserve(today);
+
         for (reserve s : mylist)
         {
             disp.add(dao.checkcus(s._id).tel);
         }
-
         adapter = new ArrayAdapter<String>( MainActivity.this,
                                             android.R.layout.simple_list_item_1,
                                             disp);
@@ -97,9 +98,10 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onResume() {
+        Log.d("INTO","onResume");
         super.onResume();
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
-        List<reserve> mylist = dao.getAllreserve();
+        List<reserve> mylist = dao.getadayreserve(today);
         disp.clear();
         for (reserve s :mylist)
         {

@@ -12,7 +12,7 @@ public class resDetail extends AppCompatActivity {
 
     int pos;
     SFsysDAO dao;
-
+    reserve r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class resDetail extends AppCompatActivity {
         //res _id
         Log.d("resDetail","2");
         dao =new SFsysDAOImp(resDetail.this);
-        reserve r=dao.checkres(pos);
+         r=dao.checkres(pos);
 
 
     }
@@ -36,7 +36,7 @@ public class resDetail extends AppCompatActivity {
 
     public void click_del(View v)
     {
-
+        dao.resdel(r);
         finish();
     }
 

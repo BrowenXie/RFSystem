@@ -201,15 +201,13 @@ Log.d("INTO","checkres~");
         List<customer> c= getAllcuserve();
         String strc = null,strr = null;
 
-
+ /*
         Gson gson = new Gson();
         strc = gson.toJson(c, new TypeToken<ArrayList<customer>>() {}.getType());
 
-
-
         //開檔案     目前程式碼作用為讀出...= =
         //this.context = context;
-       /*
+
         String fName = "customer.json";
          File readFile = new File(context.getFilesDir() + File.separator + fName);
         char[] buffer = new char[1];
@@ -232,9 +230,6 @@ Log.d("INTO","checkres~");
 
 
         Toast.makeText(context, "備份至檔案", Toast.LENGTH_SHORT).show();
-
-
-
 
     }
 
@@ -292,6 +287,74 @@ Log.d("INTO","checkres~");
     }
 
     @Override
+    public List getadayreserve(String date) {
+        date="20160822";
+
+        //date String dateformat = "yyyy/MM/dd";  EX 2016/08/17
+        //SQLite reservetime:Mon Aug 22 12:00:00 GMT+00:00 2016
+        //String test ="Mon Aug 22 12:00:00 GMT+00:00 2016";  用這個可以 BUT...
+        Log.d("date",date);
+        //以下是傳回所有訂位資料的CODE
+
+        ArrayList<reserve> mylist = new ArrayList<>();
+
+        // Cursor c = db.rawQuery("Select * from reserve where strftime('%Y%m%d',reservetime) = ?", new String[] {date});
+
+
+       // Cursor c = db.rawQuery("Select * from reserve where reservetime = ?", new String[] {test});
+       // Cursor c = db.rawQuery("Select * from reserve where strftime('%Y/%m/%d',reservetime) = ?", new String[] {date});
+       // Cursor c = db.rawQuery("Select * from reserve where reservetime between ? and ?", new String[] {date, xxxx});
+        Cursor c = db.rawQuery("Select * from customer", null);
+
+        //---------------------------------
+
+        Cursor c2 = db.rawQuery("Select strftime('%Y%m%d',reservetime), * from reserve ", null);
+        if (c2.moveToFirst())
+        {
+            do {
+                Log.d("date",c2.getString(0));
+
+            } while (c2.moveToNext());
+        }
+
+        //---------------------------------
+
+
+        Log.d("moveToFirst:", String.valueOf(c.moveToFirst()));
+
+        if (c.moveToFirst())
+        {Log.d("date","moveToFirst");
+            do { Log.d("date","moveToFirst-do");
+                Date dt = null;
+                try {
+                    dt = new SimpleDateFormat(pattern2, Locale.ENGLISH).parse(c.getString(6));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Log.d("ERR","IMP-getAllreserve-日期轉換錯誤~");
+                }
+
+                boolean a=(c.getInt(4) == 1)? true : false;
+                boolean b=(c.getInt(5) == 1)? true : false;
+
+                reserve r = new reserve(c.getInt(1),c.getInt(2),c.getInt(3),
+                        a,b,
+                        dt,
+                        c.getString(7),c.getString(8));
+                r._id=c.getInt(0);
+                mylist.add(r);
+            } while (c.moveToNext());
+        }
+        return mylist;
+    }
+
+
+
+
+
+
+
+
+    @Override
     public List getAllcuserve() {
         ArrayList<customer> mylist = new ArrayList<>();
         Cursor c = db.rawQuery("Select * from customer", null);
@@ -331,26 +394,4 @@ Log.d("INTO","checkres~");
         return mylist;
     }
 
-/*
-                                            0"_id INTEGER PRIMARY KEY  AUTOINCREMENT ,"+
-                                            1"name VARCHAR,"+
-                                            2"sex INTEGER,"+
-                                            3"awkward INTEGER,"+
-                                            4"awkreason VARCHAR,"+
-                                            5"VIP INTEGER,"+
-                                            6"birthday DATE,"+
-                                            7"address VARCHAR,"+
-                                            8"tel VARCHAR,"+
-                                            9"PS VARCHAR)";
-
-
-  int awkward,
-                    String awkreason,
-                    int VIP,
-                    String name,
-                    Date birthday,
-                    String address,
-                    String tel,
-                    String PS )
- */
 }
