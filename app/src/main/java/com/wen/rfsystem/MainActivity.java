@@ -64,63 +64,24 @@ public class MainActivity extends AppCompatActivity{
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
         textDate.setText(year + "/" + (monthOfYear+1) + "/" + dayOfMonth);
-                String mm;
-                int m=monthOfYear+1;
-                if(m<10)
-                {
-                    mm="0"+m;
-                } else
-                {mm= String.valueOf(m);
-                }
 
+                String mm; int m=monthOfYear+1;
+                if(m<10) { mm="0"+m; }
+                else {mm= String.valueOf(m); }
 
-                String dd;
-                int d=monthOfYear+1;
-                if(d<10)
-                {
-                    dd="0"+d;
-                } else
-                {dd= String.valueOf(d);
-                }
+                String dd; int d=monthOfYear+1;
+                if(d<10)  {dd="0"+d;}
+                else {dd= String.valueOf(d); }
 
                 today2= ""+year+ mm + dayOfMonth;
                 onResume();
+
                 Log.d("today2",today2);
             }
         },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
          calendar.get(Calendar.DAY_OF_MONTH));
 
 
-
-        // listview
-        SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
-
-/*
-
- */
-        mylist = dao.getadayreserve(today2);
-       // mylist = dao.getAllreserve();
-        for (reserve s : mylist)
-        {
-            disp.add(dao.checkcus(s._id).tel);
-        }
-        adapter = new ArrayAdapter<String>( MainActivity.this,
-                                            android.R.layout.simple_list_item_1,
-                                            disp);
-
-        lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(adapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent it = new Intent(MainActivity.this, resDetail.class);
-                it.putExtra("pos", mylist.get(position)._id);
-                startActivity(it);
-            }
-
-        });
     }
 
 
@@ -132,15 +93,42 @@ public class MainActivity extends AppCompatActivity{
         Log.d("INTO","onResume");
         Log.d("toady2",today2);
         super.onResume();
+
+        // listview
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
-       List<reserve> mylist = dao.getadayreserve(today2);
-       //mylist = dao.getAllreserve();
+        mylist = dao.getadayreserve(today2);
+        // mylist = dao.getAllreserve();
+        for (reserve s : mylist)
+        {
+            disp.add(dao.checkcus(s._id).tel);
+        }
+        adapter = new ArrayAdapter<String>( MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                disp);
+
+        lv = (ListView) findViewById(R.id.listView);
+        lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent it = new Intent(MainActivity.this, resDetail.class);
+                Log.d("position=", String.valueOf(position));
+                it.putExtra("pos", mylist.get(position)._id);
+                startActivity(it);
+            }
+
+        });
+        /*
+              //mylist = dao.getAllreserve();
         disp.clear();
         for (reserve s :mylist)
         {
             disp.add(dao.checkcus(s._id).tel);
         }
         adapter.notifyDataSetChanged();
+
+*/
     }
 
 

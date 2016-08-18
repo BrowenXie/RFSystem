@@ -26,6 +26,7 @@ public class resDetail extends AppCompatActivity {
         dao =new SFsysDAOImp(resDetail.this);
          r=dao.checkres(pos);
 
+        customer c=dao.checkcus(r.customer);
 
     }
 
