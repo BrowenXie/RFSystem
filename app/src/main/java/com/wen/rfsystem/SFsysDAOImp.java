@@ -169,7 +169,7 @@ public class SFsysDAOImp implements SFsysDAO{
 
     @Override
     public reserve checkres(long id) {
-Log.d("INTO","checkres~");
+        Log.d("INTO","checkres~");
         Log.d("id",String.valueOf(id));
 
         Cursor c = db.rawQuery("Select * from reserve", null);
