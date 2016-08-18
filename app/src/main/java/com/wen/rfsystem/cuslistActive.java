@@ -45,7 +45,7 @@ public class cuslistActive extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent it = new Intent(cuslistActive.this, cusDetail.class);
-                it.putExtra("cusid", cuslist.get(position)._id);
+                it.putExtra("pos", cuslist.get(position)._id);
 
                 Log.d("cuslist post:", String.valueOf(position));
 

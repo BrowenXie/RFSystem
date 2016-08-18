@@ -28,7 +28,7 @@ public class reslistActivity extends AppCompatActivity {
         reslist = dao.getAllreserve();
         for (reserve s : reslist)
         {
-            resdisp.add(dao.checkcus(s.customer).name);
+            resdisp.add(dao.checkcus(s.customer).tel);
         }
 
         resadapter = new ArrayAdapter<String>( reslistActivity.this,

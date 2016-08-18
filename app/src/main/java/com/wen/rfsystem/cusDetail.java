@@ -18,11 +18,9 @@ public class cusDetail extends AppCompatActivity {
         setContentView(R.layout.activity_cus_detail);
 
         Intent it = getIntent();
-        pos = it.getLongExtra("cusid", 0);
-
+        pos = it.getLongExtra("pos", 0);
         //res _id
         Log.d("cusDetail","OK");
-
         Log.d("cusD_POS=", String.valueOf(pos));
 
  dao =new SFsysDAOImp(cusDetail.this);

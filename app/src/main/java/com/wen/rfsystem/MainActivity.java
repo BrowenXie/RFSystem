@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity{
     ArrayAdapter<String> adapter;
     TextView textDate;
     private DatePickerDialog datePickerDialog;
-    List<reserve> mylist;
+    List<reserve> mylist=null;
     String today;String today2;
 
     public MainActivity() {
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity{
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
         mylist = dao.getadayreserve(today2);
         // mylist = dao.getAllreserve();
+        disp.clear();
         for (reserve s : mylist)
         {
             disp.add(dao.checkcus(s._id).tel);
@@ -119,6 +120,8 @@ public class MainActivity extends AppCompatActivity{
             }
 
         });
+
+        adapter.notifyDataSetChanged();
         /*
               //mylist = dao.getAllreserve();
         disp.clear();
