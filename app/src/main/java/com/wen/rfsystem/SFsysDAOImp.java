@@ -54,20 +54,28 @@ public class SFsysDAOImp implements SFsysDAO{
 
     @Override
     public void cusdel(customer person) {
-        db.execSQL("Delete from customer where id='" + person._id + "'");
+       // db.execSQL("Delete from customer where id='" + person._id + "'");
+
+    /*
+    刪掉以後要處理訂位資料沒有顧客資料的問題.... 先封印
+     */
     }
 
     @Override
     public void cusupdata(customer person) {
         db.execSQL("Update customer set name='"+ person.name +
-                "'address'" + person.address+
-                "'tel'" + person.tel+
-                "'awkward'" + person.awkward+
-                "'VIP'" + person.VIP+
-                "'birthday'" + person.birthday.toString()+
-                "'address'" + person.address+
-                "'PS'" +person.PS +
-                "' Where id='" + person._id + "'" );
+                                        "',sex=" + person.sex+
+                                        ",address='" + person.address+
+                                        "',tel='"+ person.tel+
+                                        "',awkward=" + person.awkward+
+                                        ",awkreason='" +person.awkreason +
+                                        "',VIP=" + person.VIP+
+                                        ",birthday='" +person.birthday+
+                                        "',address='" + person.address+
+                                        "',PS='" +person.PS +
+                                        "' Where _id=" + person._id );
+
+
     }
 
     @Override
@@ -148,15 +156,15 @@ public class SFsysDAOImp implements SFsysDAO{
     @Override
     public void resupdata(reserve reserve) {
         // db.execSQL("Update student set addr = '" + s.addr + "' ,tel='" + s.tel + "' Where name='" + s.name + "'");
-        db.execSQL("Update customer set customer='"+reserve.customer+
-                "'adult'" + reserve.adult+
-                "'child'" + reserve.child+
-                "'checkout'" + reserve.checkout+
-                "'checkin'" + reserve.checkin+
-                "'reservetime'" + reserve.reservetime+
-                "'service'" + reserve.service+
-                "'PS'" +reserve.PS +
-                "' Where id='" + reserve._id + "'" );
+        db.execSQL("Update customer set customer="+reserve.customer+
+                ",adult=" + reserve.adult+
+                ",child=" + reserve.child+
+                ",checkout='" + reserve.checkout+
+                "',checkin='" + reserve.checkin+
+                "',reservetime='" + reserve.reservetime+
+                "',service='" + reserve.service+
+                "',PS='" +reserve.PS +
+                "' Where _id=" + reserve._id  );
     }
 
     @Override
@@ -275,7 +283,10 @@ Log.d("INTO","checkres~");
                         c.getString(7),c.getString(8));
                 r._id=c.getInt(0);
                 mylist.add(r);
+
             } while (c.moveToNext());
+
+
         }
         return mylist;
     }
