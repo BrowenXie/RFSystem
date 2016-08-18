@@ -156,7 +156,7 @@ public class SFsysDAOImp implements SFsysDAO{
     @Override
     public void resupdata(reserve reserve) {
         // db.execSQL("Update student set addr = '" + s.addr + "' ,tel='" + s.tel + "' Where name='" + s.name + "'");
-        db.execSQL("Update customer set customer="+reserve.customer+
+        db.execSQL("Update reserve set customer="+reserve.customer+
                 ",adult=" + reserve.adult+
                 ",child=" + reserve.child+
                 ",checkout='" + reserve.checkout+
@@ -169,16 +169,20 @@ public class SFsysDAOImp implements SFsysDAO{
 
     @Override
     public reserve checkres(long id) {
-        Log.d("INTO","checkres~");
+        id=id-1;
         Log.d("id",String.valueOf(id));
+        Cursor c;
 
-        Cursor c = db.rawQuery("Select * from reserve", null);
+         c = db.rawQuery("Select * from reserve", null);
         Log.d("checkres","1");
+
+        Log.d("c.toString()",c.toString());
+        c.moveToFirst();
         c.moveToPosition((int) id);
-        Date dt = null;
 
-        Log.d("checkres","2");
 
+
+        Log.d("_id=", String.valueOf(id));
         boolean a=(c.getInt(4) == 1)? true : false;
         boolean b=(c.getInt(5) == 1)? true : false;
 
