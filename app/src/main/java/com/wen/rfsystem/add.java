@@ -33,6 +33,14 @@ public class add extends AppCompatActivity {
         EditText DateeditText = (EditText) findViewById(R.id.DateeditText);
         DateeditText.setText(today);
 
+
+        String dateformatTIME = "HH:mm";
+        SimpleDateFormat dft = new SimpleDateFormat(dateformatTIME);
+        String nowtime = dft.format(mCal.getTime());
+        EditText TIMEeditText = (EditText) findViewById(R.id.TIMEeditText);
+        TIMEeditText.setText(nowtime);
+
+
     }
 
 
@@ -43,6 +51,10 @@ public class add extends AppCompatActivity {
          EditText childEDText = (EditText) findViewById(R.id.childEDText);
          EditText tel = (EditText) findViewById(R.id.telEDText);
          EditText PS = (EditText) findViewById(R.id.PSEDText);
+
+        EditText DateeditText = (EditText) findViewById(R.id.DateeditText);
+        EditText TIMEeditText = (EditText) findViewById(R.id.TIMEeditText);
+
 
        /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date dt = null;
@@ -71,13 +83,20 @@ public class add extends AppCompatActivity {
         Log.d("cusid", String.valueOf(cusid));
 
 
+
+        String date=DateeditText.getText().toString();
+        date=date.replace("/","");
+        String time=TIMEeditText.getText().toString();
+        time=time.replace(":","");
+        Log.d("TIME",time);
+
         reserve b = new reserve(
                                 cusid,  //顧客編號
                                 parseInt( adultEDText.getText().toString()),     //幾大
                                 parseInt( childEDText.getText().toString()),//幾小  parseInt( childEDText.getText().toString()) ,
                                 false,// 已離開
                                 false,// 已進入
-                                "201608171230", //訂位時間
+                                date+time, //訂位時間
                                 PS.getText().toString(), //備註
                                 "LO"  //訂位輸入人員
         );
