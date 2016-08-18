@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,7 +45,10 @@ public class cuslistActive extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent it = new Intent(cuslistActive.this, cusDetail.class);
-                it.putExtra("pos", cuslist.get(position)._id);
+                it.putExtra("cusid", cuslist.get(position)._id);
+
+                Log.d("cuslist post:", String.valueOf(position));
+
                 startActivity(it);
             }
 

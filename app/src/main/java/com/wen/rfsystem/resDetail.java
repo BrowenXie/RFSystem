@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class resDetail extends AppCompatActivity {
 
-    int pos;
+    long pos;
     SFsysDAO dao;
     reserve r;
 
@@ -18,9 +18,9 @@ public class resDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res_detail);
-        Log.d("resDetail","1");
+        Log.d("resDetail","into");
         Intent it = getIntent();
-        pos = it.getIntExtra("pos", 0);
+        pos = it.getLongExtra("pos", 0);
         //res _id
         Log.d("resDetail","2");
         dao =new SFsysDAOImp(resDetail.this);
