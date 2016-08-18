@@ -64,9 +64,33 @@ public class MainActivity extends AppCompatActivity{
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
         textDate.setText(year + "/" + (monthOfYear+1) + "/" + dayOfMonth);
+                String mm;
+                int m=monthOfYear+1;
+                if(m<10)
+                {
+                    mm="0"+m;
+                } else
+                {mm= String.valueOf(m);
+                }
+
+
+                String dd;
+                int d=monthOfYear+1;
+                if(d<10)
+                {
+                    dd="0"+d;
+                } else
+                {dd= String.valueOf(d);
+                }
+
+                today2= ""+year+ mm + dayOfMonth;
+                onResume();
+                Log.d("today2",today2);
             }
         },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
          calendar.get(Calendar.DAY_OF_MONTH));
+
+
 
         // listview
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
@@ -103,7 +127,10 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onResume() {
+
+
         Log.d("INTO","onResume");
+        Log.d("toady2",today2);
         super.onResume();
         SFsysDAO dao = new SFsysDAOImp(MainActivity.this);
        List<reserve> mylist = dao.getadayreserve(today2);

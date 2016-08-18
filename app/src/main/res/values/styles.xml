@@ -8,6 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="BaseDialogTheme" parent="android:Theme.Holo.Dialog">
+    </style>
 
 
 </resources>

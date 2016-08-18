@@ -283,7 +283,7 @@ Log.d("INTO","checkres~");
     @Override
     public List getadayreserve(String date) {
         //date="2016/08/17"
-        Log.d("date=",date);
+        Log.d("getadayreserve_date=",date);
 
         //date String dateformat = "yyyy/MM/dd HH:MM";  EX 201608171230
 
