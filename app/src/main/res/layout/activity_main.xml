@@ -23,28 +23,28 @@
         android:layout_weight="0.04">
 
         <ImageButton
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
             android:id="@+id/resButton"
             android:layout_gravity="center_horizontal"
             android:onClick="goRes"
-            android:src="@drawable/calendar"
+            android:src="@drawable/img6"
             android:layout_weight="1" />
 
         <ImageButton
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
             android:id="@+id/cusButton"
             android:layout_gravity="right"
             android:onClick="goCus"
-            android:src="@drawable/person"
+            android:src="@drawable/img2"
             android:layout_weight="1" />
 
         <ImageButton
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
             android:id="@+id/imageButton3"
-            android:src="@drawable/set"
+            android:src="@drawable/img3"
             android:onClick="goSet"
             android:layout_weight="1" />
 
@@ -63,16 +63,19 @@
             android:layout_height="wrap_content"
             android:text="新增訂位"
             android:id="@+id/button2"
-            android:onClick="goAdd" />
+            android:onClick="goAdd"
+            android:background="@drawable/img1"
+            android:textColor="@color/abc_secondary_text_material_light"
+            android:textAlignment="viewStart" />
 
         <TextView
-                android:layout_width="124dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="今天日期"
-                android:id="@+id/datetext"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="今天日期"
+            android:id="@+id/datetext"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1.01" />
 
@@ -90,12 +93,11 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="114dp"
+        android:layout_height="342dp"
         android:id="@+id/listView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_weight="0.70" />
+        android:layout_alignParentStart="true" />
 
 
 </LinearLayout>
