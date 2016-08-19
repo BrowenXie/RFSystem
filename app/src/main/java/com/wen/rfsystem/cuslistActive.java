@@ -9,10 +9,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class cuslistActive extends AppCompatActivity {
     ListView cuslv;
@@ -28,18 +31,40 @@ public class cuslistActive extends AppCompatActivity {
         // listview
         SFsysDAO dao = new SFsysDAOImp(cuslistActive.this);
         cuslist = dao.getAllcuserve();
-        for (customer s : cuslist)
+        cuslv = (ListView) findViewById(R.id.listView3);
+
+
+       /*
+         for (customer s : cuslist)
         {
             cusdisp.add(s.name);
         }
-
         cusadapter = new ArrayAdapter<String>( cuslistActive.this,
                 android.R.layout.simple_list_item_1,
                 cusdisp);
-
-        cuslv = (ListView) findViewById(R.id.listView3);
         cuslv.setAdapter(cusadapter);
+        */
 
+
+        //----------
+        ArrayList<Map<String, String>> mylist2 = new ArrayList();
+        mylist2.clear();
+        for (customer s : cuslist)
+        {
+            HashMap<String, String> m1 = new HashMap();
+            m1.put("name", s.name);
+            m1.put("tel", s.tel);
+            mylist2.add(m1);
+        }
+
+        SimpleAdapter adapter = new SimpleAdapter(cuslistActive.this,
+                mylist2,
+                android.R.layout.simple_list_item_2,
+                new String[] {"name", "tel"},
+                new int[] {android.R.id.text1, android.R.id.text2});
+        cuslv.setAdapter(adapter);
+
+        //----------
         cuslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

@@ -105,6 +105,9 @@ public class add extends AppCompatActivity {
         long resid =dao.resadd(b);
         Log.d("resid", String.valueOf(resid));
 
+        finish();
+
+
     }
 /*
  public void setDate(View v){
