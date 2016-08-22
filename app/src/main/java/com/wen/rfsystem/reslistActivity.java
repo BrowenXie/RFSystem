@@ -3,6 +3,7 @@ package com.wen.rfsystem;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,7 +30,6 @@ public class reslistActivity extends AppCompatActivity {
         SFsysDAO dao = new SFsysDAOImp(reslistActivity.this);
         reslist = dao.getAllreserve();
         reslv = (ListView) findViewById(R.id.listView2);
-
         /*
              for (reserve s : reslist)
         {
@@ -40,10 +40,7 @@ public class reslistActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 resdisp);
         reslv.setAdapter(resadapter);
-
          */
-
-
         //----------
         ArrayList<Map<String, String>> mylist2 = new ArrayList();
 
@@ -62,13 +59,15 @@ public class reslistActivity extends AppCompatActivity {
                 new String[] {"name", "tel"},
                 new int[] {android.R.id.text1, android.R.id.text2});
         reslv.setAdapter(adapter);
-
         //-------
+
 
                 reslv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Log.d("OnItemClickListener-ID", String.valueOf(reslist.get(position)._id));
                 Intent it = new Intent(reslistActivity.this, resDetail.class);
                 it.putExtra("pos", reslist.get(position)._id);
                 startActivity(it);

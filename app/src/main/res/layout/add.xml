@@ -49,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/adultEDText"
+            android:inputType="number"
             android:hint="輸入人數"
             android:layout_row="2"
             android:layout_column="1" />
@@ -65,6 +66,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:id="@+id/childEDText"
             android:hint="輸入人數"
             android:layout_row="3"
@@ -90,43 +92,39 @@
             android:layout_row="4"
             android:layout_column="1" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="輸入日期"
+            android:id="@+id/button8"
+            android:layout_row="6"
+            android:layout_column="0"
+            android:onClick="setDate" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="預約日期："
-            android:id="@+id/textView3"
-            android:layout_row="6"
-            android:layout_column="0" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
+            android:text="日期"
             android:id="@+id/DateeditText"
             android:layout_row="6"
-            android:layout_column="1"
-            android:hint="請輸入預約日期"
-            android:onClick="setDate"
-            android:clickable="true" />
+            android:layout_column="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="輸入時間"
+            android:id="@+id/button9"
+            android:layout_row="7"
+            android:layout_column="0"
+            android:onClick="setTime" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="預約時間："
-            android:id="@+id/textView15"
-            android:layout_row="7"
-            android:layout_column="0" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
+            android:text="時間"
             android:id="@+id/TIMEeditText"
-            android:hint="請輸入預約時間"
             android:layout_row="7"
             android:layout_column="1" />
 
@@ -177,5 +175,6 @@
             android:layout_alignParentEnd="true"
             android:onClick="cancel" />
     </RelativeLayout>
+
 
 </LinearLayout>

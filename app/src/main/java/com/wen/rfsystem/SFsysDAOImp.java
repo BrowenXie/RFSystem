@@ -54,7 +54,7 @@ public class SFsysDAOImp implements SFsysDAO{
 
     @Override
     public void cusdel(customer person) {
-       // db.execSQL("Delete from customer where id='" + person._id + "'");
+       // db.execSQL("Delete from customer where _id=" + person._id );
 
     /*
     刪掉以後要處理訂位資料沒有顧客資料的問題.... 先封印
@@ -150,7 +150,7 @@ public class SFsysDAOImp implements SFsysDAO{
 
     @Override
     public void resdel(reserve reserve) {
-        db.execSQL("Delete from customer where id='" + reserve._id + "'");
+        db.execSQL("Delete from reserve where _id=" + reserve._id );
     }
 
     @Override
@@ -169,22 +169,35 @@ public class SFsysDAOImp implements SFsysDAO{
 
     @Override
     public reserve checkres(long id) {
-        id=id-1;
         Log.d("id",String.valueOf(id));
+        id=id-1;
+        Log.d("_id",String.valueOf(id));
         Cursor c;
 
          c = db.rawQuery("Select * from reserve", null);
-        Log.d("checkres","1");
+
 
         Log.d("c.toString()",c.toString());
+
         c.moveToFirst();
         c.moveToPosition((int) id);
 
 
-
+        boolean a,b;
         Log.d("_id=", String.valueOf(id));
-        boolean a=(c.getInt(4) == 1)? true : false;
-        boolean b=(c.getInt(5) == 1)? true : false;
+        if(isEmpty(String.valueOf(c.getInt(4))))
+        {
+            a=false;
+        }else{  a=(c.getInt(4) == 1)? true : false;}
+        if(isEmpty(String.valueOf(c.getInt(5))))
+        {
+            b=false;
+        }else{  b=(c.getInt(5) == 1)? true : false;}
+        Log.d("a=", String.valueOf(c.getInt(4)));
+        Log.d("b=", String.valueOf(c.getInt(5)));
+
+
+
 
         reserve r = new reserve(c.getInt(1),c.getInt(2),c.getInt(3),
                                 a,b,
@@ -402,4 +415,14 @@ public class SFsysDAOImp implements SFsysDAO{
         return mylist;
     }
 
+
+    public static boolean isEmpty(String str) {
+
+        if (str == null)
+            return true;
+        else if (str.toString().trim().length() == 0)
+            return true;
+
+        return false;
+    }
 }

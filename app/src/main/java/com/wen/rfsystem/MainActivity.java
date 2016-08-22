@@ -140,6 +140,8 @@ public class MainActivity extends AppCompatActivity{
         {
             HashMap<String, String> m1 = new HashMap();
             m1.put("name", dao.checkcus(s._id).name);
+
+            //m1.put("tel", String.valueOf(s._id));
             m1.put("tel", dao.checkcus(s._id).tel);
             mylist2.add(m1);
         }
